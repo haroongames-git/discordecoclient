@@ -97,7 +97,13 @@ class DiscordEcoClient extends EventEmitter {
     var userjob = jobs[Math.floor(Math.random() * (jobs.length + 1))]
     var moneygot = Math.floor(Math.random() * (max_payout - min_payout + 1) + min_payout)
     db.add(`balance.${user_id}`, moneygot)
-    return new Promise({user_id: userid, oldbalance: db.get(`balance.${userid}`) + amount, newbalance: db.get(`balance.${userid}`), job: userjob, got: moneygot})
+    return new Promise({
+      user_id: userid,
+      oldbalance: db.get(`balance.${userid}`) + amount,
+      newbalance: db.get(`balance.${userid}`),
+      job: userjob,
+      got: moneygot
+    })
   }
 }
 
