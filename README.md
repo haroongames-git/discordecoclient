@@ -1,4 +1,4 @@
-# Discord Economy Client
+# Discord Economy Client [![NPM version](https://img.shields.io/npm/v/discordecoclient.svg?style=flat-square)](https://npmjs.com/package/discordecoclient)
 ### Read me before installing!
 You need to install quick.db before using this library, using:
 ```bat
