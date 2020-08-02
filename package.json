@@ -1,5 +1,5 @@
 {
-  "name": "testing",
+  "name": "discordecoclient",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -12,8 +12,5 @@
     "eris": "^0.13.3",
     "prompt-sync": "^4.2.0",
     "quick.db": "^7.1.1"
-  },
-  "publishConfig": {
-     "registry": "https://npm.pkg.github.com/"
   }
 }
