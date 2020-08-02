@@ -122,4 +122,13 @@ const commands = [
     }
   }
 ]
+
+client.on('messageCreate', (msg) => {
+  if (msg.author.bot || !msg.content.startsWith('!' /* Chosen prefix */)) return
+  commands.forEach(command => {
+    var args = msg.content.split(' ')
+    var usercommand = args.shift();
+    if (usercommand === command.name) command.run(msg, args)
+  })
+})
 ```
