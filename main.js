@@ -54,6 +54,7 @@ class DiscordEcoClient extends EventEmitter {
         }${db.get(`balance.${userid}`)}`
       );
     }
+    return new Promise({user_id: userid, oldbalance: db.get(`balance.${userid}`) - amount, newbalance: db.get(`balance.${userid}`)})
   }
   RemoveFromBalance(userid, amount) {
     if (!userid) {
@@ -79,6 +80,24 @@ class DiscordEcoClient extends EventEmitter {
       throw new EconomyError("No UserID was given.")
     }
     return new Promise({user_id: userid, balance: db.get(`balance.${userid}`)})
+  }
+  Work(userid, min_payout, max_payout, jobs) {
+    if (!userid) {
+      throw new EconomyError("No UserID was given.")
+    }
+    if (!min_payout) {
+      throw new EconomyError("No minimum payout was given.")
+    }
+    if (!max_payout) {
+      throw new EconomyError("No maximum payout was given.")
+    }
+    if (!jobs || !Array.isArray(jobs)) {
+      throw new EconomyError("No jobs were given, or the jobs argument isn't an array.")
+    }
+    var userjob = jobs[Math.floor(Math.random() * (jobs.length + 1))]
+    var moneygot = Math.floor(Math.random() * (max_payout - min_payout + 1) + min_payout)
+    db.add(`balance.${user_id}`, moneygot)
+    return new Promise({user_id: userid, oldbalance: db.get(`balance.${userid}`) + amount, newbalance: db.get(`balance.${userid}`), job: userjob, got: moneygot})
   }
 }
 
