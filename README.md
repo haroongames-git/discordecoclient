@@ -108,14 +108,14 @@ const commands = [
     }
   },
   {
-    name: "bal"
+    name: "bal",
     run:async (message, args) => {
       var profile = await EcoClient.Fetch(message.author.id)
       client.createMessage(message.channel.id, `You have ${EcoClient.options.prefix}${profile.balance}.`)
     }
   },
   {
-    name: "work"
+    name: "work",
     run: async (message, args) => {
       var profile = await EcoClient.Work(message.author.id, 100, 1000, ["Cashier", "Robber", "Police Officer"])
       client.createMessage(message.channel.id, `You work as a ${profile.job} and got ${EcoClient.options.prefix}${profile.got}! You now have ${profile.newbalance}.`)
