@@ -15,8 +15,8 @@ class EconomyError extends Error {}
  */
 
 class DiscordEcoClient extends EventEmitter {
-  super()
   constructor(options) {
+    super(options)
     this.options = Object.assign(
       {
 		client: null,
