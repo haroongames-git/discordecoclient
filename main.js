@@ -15,6 +15,7 @@ class EconomyError extends Error {}
  */
 
 class DiscordEcoClient extends EventEmitter {
+  super()
   constructor(options) {
     this.options = Object.assign(
       {
@@ -96,7 +97,7 @@ class DiscordEcoClient extends EventEmitter {
     }
     var userjob = jobs[Math.floor(Math.random() * (jobs.length + 1))]
     var moneygot = Math.floor(Math.random() * (max_payout - min_payout + 1) + min_payout)
-    db.add(`balance.${user_id}`, moneygot)
+    db.add(`balance.${userid}`, moneygot)
     return new Promise({
       user_id: userid,
       oldbalance: db.get(`balance.${userid}`) + amount,
@@ -104,6 +105,21 @@ class DiscordEcoClient extends EventEmitter {
       job: userjob,
       got: moneygot
     })
+  }
+  Crime(userid, victimid, amount, bustchance) {
+    if (!userid) {
+      throw new EconomyError("No UserID was given.")
+    }
+    if (!victimid) {
+      throw new EconomyError("No VictimID was given.")
+    }
+    if (!amount) {
+      throw new EconomyError("No amount to steal was given.")
+    }
+    if (!bustchance || isNaN(bustchance) || bustchance > 100) {
+      throw new EconomyError("No bust chance was given, the bust chance isn't a number or it is more than 100.")
+      var chance = Math.floor(Math.random() * (100 - bustchance + 1) + bustchance)
+    }
   }
 }
 
